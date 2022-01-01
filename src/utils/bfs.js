@@ -1,4 +1,13 @@
-const bfs = (graph, start, end) => {
+export const graph = {
+    'A': ['B', 'C', 'E'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F', 'G'],
+    'D': ['B'],
+    'E': ['A', 'B', 'D'],
+    'F': ['C'],
+    'G': ['C'],
+}
+function* bfs(graph, start, end){
     // Create a new queue and enqueue the start node
     const queue = [start];
     // Create a set to store visited nodes
@@ -9,10 +18,7 @@ const bfs = (graph, start, end) => {
     while (queue.length) {
         // Dequeue a node and store it
         const node = queue.shift();
-        console.log("current node: ",node, "\n",
-                    "queue: ", queue, "\n",
-                    "visited: ", visited, "\n",
-                    "neigbours: ", graph[node]);
+        yield node
 
         // If the node is the end, we're done
         if (node === end) return true;
@@ -33,14 +39,16 @@ const bfs = (graph, start, end) => {
     }
     return false;
 }
-graph = {
-    'A': ['B', 'C', 'E'],
-    'B': ['A', 'D', 'E'],
-    'C': ['A', 'F', 'G'],
-    'D': ['B'],
-    'E': ['A', 'B', 'D'],
-    'F': ['C'],
-    'G': ['C'],
-}
 
-bfs(graph, 'A', 'E');
+// const bfsInstance = bfs(graph, 'A', 'G')
+// bfsInstance.next().value
+// bfsInstance.next().value
+// bfsInstance.next().value
+// bfsInstance.next().value
+// bfsInstance.next().value
+// bfsInstance.next().value
+// bfsInstance.next().value
+// bfsInstance.next().value
+
+
+export default bfs;

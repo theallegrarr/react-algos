@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Mermaid from './Mermaid'
 
 const DFS = () => {
+    useEffect(() => {
+
+    }, [])
 
     return (
         <div id="myDiagramDiv">
-            <_Component />
+            <Diagram />
         </div>
     )
 }
 
-const _Component = () => {
+const Diagram = () => {
     return (
       <Mermaid chart={`
           %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#df92c1'}}}%%
