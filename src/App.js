@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import { Provider } from 'react-redux';
+import store from './redux/store'
+
 import './App.css';
 import Header from './components/Header';
 import BFS from './components/BFS';
@@ -9,12 +12,14 @@ function App() {
   const [focus, setFocus] = useState(1)
 
   return (
-    <div className="App">
-      <Header setFocus={setFocus} />
-      <div className="App-body">
-        <AlgoToggle focus={focus} />
+    <Provider store={store}>
+      <div className="App">
+        <Header setFocus={setFocus} />
+        <div className="App-body">
+          <AlgoToggle focus={focus} />
+        </div>
       </div>
-    </div>
+    </Provider>
   );
 }
 

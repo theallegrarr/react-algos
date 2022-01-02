@@ -1,29 +1,43 @@
 import React, { useEffect, useState } from 'react'
-import bfsGenerator, { graph } from '../utils/bfs'
+import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
+import { useDispatch } from 'react-redux'
 
-const BFS = () => {
-    const [bfs, setBfs] = useState({
-        data: ``,
-        bfsInstance: {}
-    })
+import { moveToNext } from '../redux/actions/bfs'
+import Diagram from './Diagram'
+import bfs, { graph } from '../utils/bfs'
+
+const BFS = ({ traverse }) => {
+    const [_bfs, setBfs] = useState(null)
+    let dispatch = useDispatch()
+
     useEffect(() => {
-        const bfsInstance = bfsGenerator(graph, 'A', 'G')
-        setBfs({ ...bfs, bfsMethod: bfsInstance })
+        const bfsInstance = bfs(graph, 'A', 'G')
+        setBfs(bfsInstance)
     }, [])
     const handleClick = (e) => {
         e.preventDefault()
-        console.log(bfs.bfsMethod.next().value)
+        dispatch(moveToNext(_bfs))
     }
 
     return (
-        <div>
+        <div id="myDiagramDiv">
+            <Diagram />
             <button
                 onClick={handleClick}
             >
-                Click Me
+                Next
             </button>
+            <p>
+                {traverse.steps}
+            </p>
         </div>
     )
 }
 
-export default BFS
+const structuredSelector = createStructuredSelector({
+    traverse: state => state.traverse,
+})
+  
+//const mapDispatchToProps = { moveToNext } 
+export default connect(structuredSelector)(BFS)

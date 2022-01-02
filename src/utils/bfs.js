@@ -18,7 +18,13 @@ function* bfs(graph, start, end){
     while (queue.length) {
         // Dequeue a node and store it
         const node = queue.shift();
-        yield node
+        //console.log(graph[node])
+        yield { 
+            current: node,
+            children: graph[node],
+            visited: visited,
+            found: node === end,
+        }
 
         // If the node is the end, we're done
         if (node === end) return true;
