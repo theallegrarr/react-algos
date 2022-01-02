@@ -10,10 +10,11 @@ const Diagram = () => {
           A-->C;
           A-->D;
           C-->E;
+          E-->W;
+          E-->X;
           C-->F;
           F-->G;
           F-->H;
-          F-->I;
           D-->M;
           D-->N;
           D-->O;

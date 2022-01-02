@@ -1,11 +1,21 @@
 export const graph = {
-    'A': ['B', 'C', 'E'],
-    'B': ['A', 'D', 'E'],
-    'C': ['A', 'F', 'G'],
-    'D': ['B'],
-    'E': ['A', 'B', 'D'],
-    'F': ['C'],
-    'G': ['C'],
+    'A': ['C', 'D', 'B'],
+    'B': ['J', 'K', 'L'],
+    'C': ['E', 'F'],
+    'D': ['M', 'N', 'O'],
+    'E': ['W', 'X'],
+    'F': ['G', 'H', 'I'],
+    'M': [],
+    'N': [],
+    'O': [],
+    'J': [],
+    'K': [],
+    'L': [],
+    'W': [],
+    'X': [],
+    'G': [],
+    'H': [],
+    'I': [],
 }
 function* bfs(graph, start, end){
     // Create a new queue and enqueue the start node

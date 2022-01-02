@@ -11,10 +11,18 @@ const BFS = ({ traverse }) => {
     const [_bfs, setBfs] = useState(null)
     let dispatch = useDispatch()
 
+    // initialize bfs iterator when component mounts
     useEffect(() => {
         const bfsInstance = bfs(graph, 'A', 'G')
         setBfs(bfsInstance)
     }, [])
+
+    // update UI everytime redux store updates
+    useEffect(() => {
+        console.log(traverse.current)
+    }, [traverse.current])
+
+    // play iteration forward
     const handleClick = (e) => {
         e.preventDefault()
         dispatch(moveToNext(_bfs))
@@ -38,6 +46,5 @@ const BFS = ({ traverse }) => {
 const structuredSelector = createStructuredSelector({
     traverse: state => state.traverse,
 })
-  
-//const mapDispatchToProps = { moveToNext } 
+
 export default connect(structuredSelector)(BFS)
